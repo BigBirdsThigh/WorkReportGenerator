@@ -1,0 +1,26 @@
+170 - c
+172 - c
+173 - x di N: Incorrect Sizing on Drawing
+174 - x cc N: Left Hand Clip Size Unreadable
+175 - c 
+176 - c
+177 - N/A wf
+178 - c
+179 - c
+180 - a i N: Can Partially Complete
+181 - c
+183 - x i N: Can't See Bolt Height
+184 - x i bs N: Can't Discern 1 Bolt Spacing
+185 - x i bs N: Can't Discern 2 Bolt Spacings
+186 - c
+187 - a di N: Can't Discern 1 Bolt Height
+188 - c
+189 - c
+190 - c
+191 - N/A wf
+192 - N/A wf
+193 - N/A wf
+194 - c N: Assumption Made About Bolt Height
+195 - c
+196 - c
+197 - x i N: Can't Discern Part Height
