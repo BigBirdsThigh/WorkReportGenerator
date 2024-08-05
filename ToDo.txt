@@ -1,3 +1,4 @@
+- FIX: Allow just 1 key for nonCompletes.py (currently all parts require min 2 tags)
 - Edit ReportGenerator to sort output by COMPLETED and if Note then by ATTEMTPING and if note etc.
 - Create a better file and folder naming convention
 - Add more comments
