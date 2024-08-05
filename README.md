@@ -1,5 +1,7 @@
 "# WorkReportGenerator" 
 
+*Use Run.bat to run*
+
 Explanation
 ------
 Make sure to delete contents of *PanelReports* but do *NOT* delete the PanelReports folder
@@ -13,6 +15,7 @@ Make sure to delete contents of *PanelReports* but do *NOT* delete the PanelRepo
 
 Output
 ------
+In scripts you can edit Keys.txt to add, remove or edit issue codes as you see fit
 The script creats subfolders inside of the *PanelReports* folder for each part list that exists, it then creates two reports. 
 1. The full onordered and unfiltered list of every part
 2. A list only containing any part not tagged as completed, this list is sorted to have parts labelled IMPOSSIBLE first, then the NOT ATTEMPTED parts and lastly the ATTEMPTING parts
