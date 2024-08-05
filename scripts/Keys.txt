@@ -1,0 +1,11 @@
+{
+    "c": "COMPLETED",
+    "a": "ATTEMPTING",
+    "wf": "WELDED FABRICATION",
+    "x": "IMPOSSIBLE",
+    "di": "DRAWING ISSUE",
+    "cc": "CHECK CLIP",
+    "bs": "BOLT SPACING",
+    "n/a": "NOT ATTEMPTED",
+    "i": "DRAWING INCOMPREHENSIBLE"
+}

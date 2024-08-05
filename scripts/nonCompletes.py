@@ -1,23 +1,25 @@
 import os
 import sys
+import json
 
-convert = {
-    "c": "COMPLETED",
-    "a": "ATTEMPTING",
-    "wf": "WELDED FABRICATION",
-    "x": "IMPOSSIBLE",
-    "di": "DRAWING ISSUE",
-    "cc": "CHECK CLIP",
-    "bs": "BOLT SPACING",
-    "n/a": "NOT ATTEMPTED",
-    "i": "DRAWING INCOMPREHENSIBLE"
-}
+def loadKeys():
+    with open('Keys.txt') as f:
+        data = f.read()
+
+        js = json.loads(data)
+    return js
+
+
+convert = loadKeys() # Load codes from Keys.txt to maintain consistency
+
+
 
 order = {
     "x": 0,
     "n/a": 1,
     "a": 2
 }
+
 
 def createReport(filename, content):
     # Create a report file and write content to it
