@@ -1,0 +1,3 @@
+- Edit ReportGenerator to sort output by COMPLETED and if Note then by ATTEMTPING and if note etc.
+- Create a better file and folder naming convention
+- Add more comments
