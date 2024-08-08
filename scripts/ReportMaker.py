@@ -38,7 +38,7 @@ def createContent(note, partNumber, issues):
             rIndex = partNumber.index("R")
             content += f"MG{partNumber} {issues} - Note: {note}\n"  # Line with original part number
             partNumberL = partNumber[:rIndex] + "L"
-            content += f"MG{partNumberL} {issues} - Note: {note}\n"  # Line with "R" replaced by "L"
+            content += f"MG{partNumberL} - {issues} - Note: {note}\n"  # Line with "R" replaced by "L"
         else:
             content += f"MG{partNumber} {issues} - Note: {note}\n"  # Line with note
     else:
@@ -46,7 +46,7 @@ def createContent(note, partNumber, issues):
             rIndex = partNumber.index("R")
             content += f"MG{partNumber} {issues}\n"  # Line with original part number
             partNumberL = partNumber[:rIndex] + "L"
-            content += f"MG{partNumberL} {issues}\n"  # Line with "R" replaced by "L"
+            content += f"MG{partNumberL} - {issues}\n"  # Line with "R" replaced by "L"
         else:
             content += f"MG{partNumber} {issues}\n"  # Line without note
 
@@ -59,6 +59,8 @@ def readLines(filename, panel):
         with open(filename, "r") as data:
             lines = data.readlines()
             for line in lines:
+                if (line == "\n"):
+                    continue
                 issueIndex = line.index('-') + 2
                 partNumber = line[:issueIndex].strip()
                 
@@ -69,12 +71,12 @@ def readLines(filename, panel):
                 else:
                     note = ""
                     issueCode = line[issueIndex:].strip()
-
+            
                 # Split issue codes and convert them
                 codes = issueCode.lower().split()
                 issue = [convert.get(code, "UNKNOWN") for code in codes]
                 issues = ", ".join(issue)
-
+            
                 # Append the content for each part
                 content += createContent(note, partNumber, issues)
         

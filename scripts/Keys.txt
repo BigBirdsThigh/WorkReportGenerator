@@ -5,7 +5,7 @@
     "x": "IMPOSSIBLE",
     "di": "DRAWING ISSUE",
     "cc": "CHECK CLIP",
-    "bs": "BOLT SPACING",
+    "bs": "CHECK BOLT SPACING",
     "n/a": "NOT ATTEMPTED",
     "i": "DRAWING INCOMPREHENSIBLE"
 }

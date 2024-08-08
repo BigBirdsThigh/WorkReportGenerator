@@ -32,6 +32,7 @@ def main():
     
     report_script = "ReportMaker.py"
     non_completes_script = "nonCompletes.py"
+    graph = "mainChart.py"    
     for panel_name in panel_names:
         print("processing " + panel + ": .")
         res = re.search(r"(\d)(_?\d)?", panel_name)
@@ -42,6 +43,14 @@ def main():
         print("Processing " + panel + ": ...")
         run_script(non_completes_script, panel)
         print("Finished Processing: " + panel)
+   
+    print("Creating Graph...")
+    count = 0
+    panels = []
+    # Convert list of panels to a space-separated string
+    panels = ' '.join(panel_names)
+    print(panels)
+    run_script(graph, panels)
 
 if __name__ == "__main__":
     main()
