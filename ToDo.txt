@@ -1,4 +1,6 @@
-- Fix PartNumbers > 2 digits causes issues
-- Edit ReportGenerator to sort output by COMPLETED and if Note then by ATTEMTPING and if note etc.
+- Edit ReportGenerator to sort output by COMPLETED and if Note then by ATTEMTPING and if note etc.(maybe)
+- Format chart better
+- Create second chart
+- Clean up code
 - Create a better file and folder naming convention
 - Add more comments
