@@ -17,9 +17,12 @@ def main():
     # Find the panel name from the folder
     panel_names = get_panel_names()
     os.chdir('../PanelReports')
+    panel_names = [x for x in panel_names if "PartList.txt" in x]
     for panel_name in panel_names:
-        res = re.search(r"(\d)(_?\d)?", panel_name)
-        panel = panel_name[:res.end()]
+
+
+        panel = panel_name[:panel_name.index("PartList")]
+        print(panel)
         try:  
                 os.mkdir(panel)  
         except OSError as error:
@@ -35,8 +38,7 @@ def main():
     graph = "mainChart.py"    
     for panel_name in panel_names:
         print("processing " + panel + ": .")
-        res = re.search(r"(\d)(_?\d)?", panel_name)
-        panel = panel_name[:res.end()]	    
+        panel = panel_name[:panel_name.index("PartList")]	    
         print("processing " + panel + ": ..")
 	# Run both scripts with the given panel name
         run_script(report_script, panel)

@@ -28,6 +28,8 @@ def createReport(filename, content):
             curr = content[i]
             if("Note" in curr):
            	 comp = curr.index("Note")-2        
+            else:
+                comp = len(curr)
             # Extract the first tag for comparison
             start = curr.index("-") + 2
             if "," in curr and curr.index(",") < comp: # To ensure the comma is not in the Note

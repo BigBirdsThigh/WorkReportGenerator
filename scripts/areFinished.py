@@ -45,9 +45,11 @@ def buildBar(counts):
     # Use a better ASCII symbol for the bar
     symbol1 = '█'  # Green part
     symbol2 = '█'  # Red part
+    pFin, pUn = calculate_percentages(fin, un)
+    pFin, pUn = round(pFin), round(pUn)
 
-    bar1 = symbol1 * fin
-    bar2 = symbol2 * un
+    bar1 = symbol1 * pFin
+    bar2 = symbol2 * pUn
     
     return Fore.GREEN + f"[{bar1}" + Fore.RED + f"{bar2}]" + Style.RESET_ALL
 

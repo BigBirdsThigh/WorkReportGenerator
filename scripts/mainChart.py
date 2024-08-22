@@ -4,6 +4,8 @@ import numpy as np
 import os
 import sys
 import json
+import seaborn as sns
+
 
 def loadKeys():
     with open('Keys.txt') as f:
@@ -32,16 +34,15 @@ def takeInput():
 
 def readLines(data):
     # Read lines from the part list file and format the content
-    content = []
-    sort = []
     occurences = []
     count = 0    
     try:
         for panel in data:
-            with open (panel, "r") as parts:
-                print("Reading file: " + str(panel))
+            sort = []  # Clear the sort list for each panel
+            with open(panel, "r") as parts:
+                print(f"Processing {panel}:")
                 for line in parts:
-                    if (line == "\n"):
+                    if line.strip() == "":
                         continue
                     issueIndex = line.index('-') + 2
                     partNumber = line[:issueIndex].strip()
@@ -57,44 +58,72 @@ def readLines(data):
                     # Split issue codes and convert them
                     codes = issueCode.lower().split()
             
-                    # if "c" in codes:  # Skip if the part is completed
-                    #     continue
-            
                     issue = [convert.get(code, "") for code in codes]               
-                    
                     issues = ", ".join(issue)
                     sort.append([note, partNumber, issues, order.get(codes[0])])
-        
-                occurences += collectOccurences(sort, count)
+
+                if sort:  # Ensure data exists for this panel
+                    print(f"Data for {panel} collected successfully.")
+                else:
+                    print(f"No data found for {panel}.")
+
+                occurences += collectOccurences(sort, count, panel)
                 count += 1
+
     except OSError as e:
-        print("Error: " + panel + " is not a valid panel file, maybe you mistyped the name(panel name should be exact to part lists file name)")
+        print(f"Error: {panel} is not a valid panel file, maybe you mistyped the name (panel name should be exact to part lists file name)")
         takeInput()
         
     return occurences
+
+
         
-def collectOccurences(content, x):
+def collectOccurences(content, x, name):
     occurences = []
     for i in range(len(content)):
-        occurences.append(["Panel" + str(x) ,content[i][2].split(",")[0]])
-        
+        print(f"Collecting issue for {name}: {content[i][2].split(',')[0]}")
+        occurences.append([name[:name.index("PartList")] ,content[i][2].split(",")[0]])
     return occurences
+
         
 def createGraph(data):
-    data = pd.DataFrame(data, columns=['Tag' , 'Count'])
+    data = pd.DataFrame(data, columns=['Panel', 'Issue'])
     data.dropna(inplace=True)
- 
+    plt.style.use('fivethirtyeight')
+    
+    # Ensure the columns (categories) are ordered consistently
+    issue_order = ['ATTEMPTING', 'COMPLETED', 'IMPOSSIBLE', 'NOT ATTEMPTED']
+    cross_tab_prop = pd.crosstab(index=data['Panel'], columns=data['Issue'], normalize="index").round(4) * 100
+    cross_tab_prop = cross_tab_prop[issue_order]  # Reorder columns
 
-    cross_tab_prop = pd.crosstab(index = data['Tag'], columns = data['Count'], normalize = "index")
     print(cross_tab_prop)
 
-    cross_tab_prop.plot(kind='bar', 
+    # Define custom colors corresponding to your categories
+    colors = ['#ff7f00', '#4daf4a', '#e41a1c', '#377eb8']  # Orange, Green, Red, Blue
+
+    ax = cross_tab_prop.plot(kind='bar', 
                         stacked=True, 
-                        colormap='tab10', 
-                        figsize=(8, 6))
-    plt.legend(loc="upper left", ncol=2)
+                        figsize=(12, 7),
+                        legend=True,
+                        color=colors,  # Use custom colors in order
+                        alpha=0.85,  # Set opacity level
+                        yticks=[0,10,20,30,40,50,60,70,80,90,100, 110])
+
+    plt.legend(loc='upper left', ncol=2)
+
+    # Adding percentage labels to the bars
+    for p in ax.patches:
+        width = p.get_width()  # Get the width of each bar
+        height = p.get_height()  # Get the height of each bar
+        x, y = p.get_xy()  # Get the x and y coordinates of the bottom left corner of the bar
+        ax.text(x + width / 2, y + height / 2, f'{height:.1f}%', 
+                ha='center', va='center', color='black', fontsize=10)
+
     plt.xlabel("Panel")
-    plt.ylabel("Proportion")
+    plt.ylabel("Proportion(%)")
+    plt.tight_layout()
     plt.show()
+
+
 
 takeInput()
