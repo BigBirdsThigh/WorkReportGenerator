@@ -1,5 +1,4 @@
-- Edit ReportGenerator to sort output by COMPLETED and if Note then by ATTEMTPING and if note etc.(maybe)
-- Create second chart
+- Enable CheckSum check
 - Clean up code
 - Create a better file and folder naming convention
 - Add more comments
