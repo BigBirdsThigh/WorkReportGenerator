@@ -1,4 +1,6 @@
-- Enable CheckSum check
+
+- Format chart better
+- Create second chart
 - Clean up code
 - Create a better file and folder naming convention
 - Add more comments

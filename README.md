@@ -1,6 +1,6 @@
 "# WorkReportGenerator" 
 
-*Run report.py to create reports*
+*Use Run.bat to run*
 
 Explanation
 ------
