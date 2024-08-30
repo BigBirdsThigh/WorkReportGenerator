@@ -90,6 +90,7 @@ def createGraph(data):
     data = pd.DataFrame(data, columns=['Panel', 'Issue'])
     data.dropna(inplace=True)
     plt.style.use('fivethirtyeight')
+  
     
     # Ensure the columns (categories) are ordered consistently
     issue_order = ['ATTEMPTING', 'COMPLETED', 'IMPOSSIBLE', 'NOT ATTEMPTED']
@@ -103,7 +104,7 @@ def createGraph(data):
 
     ax = cross_tab_prop.plot(kind='bar', 
                         stacked=True, 
-                        figsize=(12, 7),
+                        figsize=(11, 6),
                         legend=True,
                         color=colors,  # Use custom colors in order
                         alpha=0.85,  # Set opacity level
@@ -121,7 +122,8 @@ def createGraph(data):
 
     plt.xlabel("Panel")
     plt.ylabel("Proportion(%)")
-    plt.tight_layout()
+    plt.subplots_adjust(bottom=0.21)
+    
     plt.show()
 
 
