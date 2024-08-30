@@ -1,4 +1,4 @@
-"# WorkReportGenerator" 
+"#WorkReportGenerator" 
 
 *Use Run.bat to run*
 
